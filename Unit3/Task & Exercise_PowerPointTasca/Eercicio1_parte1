@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+
+public class Ejer1_parte1 {
+    public static void main(String[] args) {
+
+        saveDatos();
+        readFichero();
+    }
+
+    private static void saveDatos() {
+        try (DataOutputStream din = new DataOutputStream(new FileOutputStream("C:\\Users\\Natalia Coronado\\Documents\\datos.dat"))) {
+            for (int i=0;i<5;i++){
+                int numeroAleatorio = (int) (Math.random() * 10) + 1;
+                din.writeInt(numeroAleatorio);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No encuentra archivo");
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+
+    }
+
+    private static void readFichero() {
+        ArrayList<Integer> list=new ArrayList<Integer>();
+
+        try (DataInputStream din = new DataInputStream(new FileInputStream("C:\\Users\\Natalia Coronado\\Documents\\datos.dat"))) {
+            for (int i=0;i<5;i++){
+                int number=din.readInt();
+                list.add(number);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No encuentra archivo");
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+
+        //Print on the screen
+        for (int num :list){
+            System.out.print(num+", ");
+        }
+
+    }
+
+
+}
