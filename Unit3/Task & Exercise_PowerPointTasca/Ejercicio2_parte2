@@ -1,0 +1,46 @@
+import java.io.*;
+
+public class Ejer2 {
+    public static void main(String[] args) {
+
+        saveFichero();
+        readFichero();
+    }
+
+    private static void saveFichero(){
+        double[] precios={1350, 400, 890, 6200, 8730};
+        int[] unidades={5, 7, 12, 8, 30};
+        String[] descripciones={"paquetes de papel","lápices","bolígrafos","carteras","mesas"};
+
+        try (DataOutputStream din = new DataOutputStream(new FileOutputStream("C:\\Users\\Natalia Coronado\\Documents\\productos.dat"))) {
+            for (int i=0;i<4;i++){
+                din.writeDouble(precios[i]);
+                din.writeInt(unidades[i]);
+                din.writeUTF(descripciones[i]);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("No encuentra archivo");
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+    }
+
+    private static void readFichero(){
+        try (DataInputStream din = new DataInputStream(new FileInputStream("C:\\Users\\Natalia Coronado\\Documents\\productos.dat"))) {
+
+            for (int i=0;i<4;i++){
+                System.out.print(din.readDouble()+"\t|");
+                System.out.print(din.readInt()+"\t|");
+                System.out.print(din.readUTF()+"\t");
+                System.out.println();
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("No encuentra archivo");
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+    }
+
+}
