@@ -1,0 +1,31 @@
+public class Main {
+    public static void main(String[] args) {
+
+        crearFichero();
+        readFichero();
+        validarFichero();
+        readCabecera();
+        writeFichero();
+        printFichero();
+    }
+
+    private static void crearFichero(){
+        
+    }
+
+    private static void readFichero(){
+
+    }
+
+    private static void validarFichero() {
+    }
+
+    private static void readCabecera() {
+    }
+
+    private static void writeFichero() {
+    }
+
+    private static void printFichero() {
+    }
+}
