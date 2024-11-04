@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class DigitalBook extends Book{
+    private int visualizaciones;
+
+    public DigitalBook(String ISBN, String titulo, String autor, ArrayList<String> listaGeneros, int visualizaciones) {
+        super(ISBN, titulo, autor, listaGeneros);
+        this.visualizaciones = visualizaciones;
+    }
+
+
+    @Override
+    public String toString() {
+        return "DigitalBook{" +
+                "visualizaciones=" + visualizaciones +
+                "} " + super.toString();
+    }
+}
