@@ -1,0 +1,16 @@
+import Exceptions.BookNotFoundException;
+import Exceptions.MemberNotFoundException;
+import Models.Book;
+import Models.Socio;
+
+import java.util.ArrayList;
+
+public interface ILibrary {
+
+    public Book returnBook(String isbn) throws BookNotFoundException;
+    public ArrayList<Book> returnBooks(String genero);
+    public ArrayList<Socio> returnSocios(int cp);
+    public Socio returnSocio(String nif) throws MemberNotFoundException;
+
+
+}
