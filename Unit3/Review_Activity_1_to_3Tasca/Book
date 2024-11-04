@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class Book {
+    private String isbn;
+    private String titulo;
+    private String autor;
+    ArrayList<String> listaGeneros= new ArrayList<String>();
+
+    public Book(String isbn, String titulo, String autor, ArrayList<String> listaGeneros) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.listaGeneros = listaGeneros;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public ArrayList<String> getListaGeneros() {
+        return listaGeneros;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "ISBN='" + isbn + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", listaGeneros=" + listaGeneros +
+                '}';
+    }
+
+    /**
+     * Comparación con el título, autor e ISBN
+     * @param o the object to be compared.
+     * @return
+     */
+
+    public int compareTo(Library o) {
+        //FALTA COMPROVAR OTROS EJS
+        return 0;
+    }
+
+
+
+}
