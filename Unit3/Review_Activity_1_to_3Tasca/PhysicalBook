@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class PhysicalBook extends Book{
+    private int anyoEdicion;
+
+    public PhysicalBook(String ISBN, String titulo, String autor, ArrayList<String> listaGeneros, int anyoEdicion) {
+        super(ISBN, titulo, autor, listaGeneros);
+        this.anyoEdicion = anyoEdicion;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PhysicalBook{" +
+                "anyoEdicion=" + anyoEdicion +
+                "} " + super.toString();
+    }
+}
