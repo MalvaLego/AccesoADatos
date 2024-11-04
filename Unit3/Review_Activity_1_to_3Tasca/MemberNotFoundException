@@ -1,0 +1,13 @@
+import Models.Socio;
+
+public class MemberNotFoundException extends RuntimeException {
+    private String nif;
+
+    public MemberNotFoundException(String nif) {this.nif=nif;}
+
+    public String getObj() {
+      return nif;
+    }
+
+    
+}
