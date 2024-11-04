@@ -1,0 +1,93 @@
+import Exceptions.BookNotFoundException;
+import Exceptions.MemberNotFoundException;
+import Interfaces.ILibrary;
+
+import java.util.*;
+
+public class Library implements ILibrary {
+    private String name;
+    private String direccion;
+    ArrayList<Book> listaBooks= new ArrayList<Book>();
+    ArrayList<Socio> listaSocios= new ArrayList<Socio>();
+
+    public Library(String name, String direccion) {
+        this.name = name;
+        this.direccion = direccion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "name='" + name + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", listaBooks=" + listaBooks +
+                ", listaSocios=" + listaSocios +
+                '}';
+    }
+
+    @Override
+    public Book returnBook(String isbn) throws BookNotFoundException{
+        for (Book o: listaBooks){
+            if (o.getIsbn().equals(isbn)){
+                return o;
+            }
+        }
+        throw new BookNotFoundException(isbn);
+    }
+
+    @Override
+    public ArrayList<Book> returnBooks(String genero) {
+        ArrayList<Book> list= new ArrayList<Book>();
+
+        for (Book o: listaBooks){
+            for (int i=0;i<o.getListaGeneros().size();i++){
+                if (o.getListaGeneros().get(i).equals(genero)){
+                    list.add(o);
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public ArrayList<Socio> returnSocios(int cp) {
+        ArrayList<Socio> list= new ArrayList<Socio>();
+
+        for (Socio o: listaSocios){
+            if (o.getCodigoPostal()==cp){
+                list.add(o);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public Socio returnSocio(String nif) throws MemberNotFoundException {
+        for (Socio o: listaSocios){
+            if (o.getNif().equals(nif)){
+                return o;
+            }
+        }
+        throw new MemberNotFoundException(nif);
+    }
+
+
+
+}
