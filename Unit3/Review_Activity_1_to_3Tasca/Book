@@ -1,19 +1,19 @@
 import java.util.*;
 
-public class Book {
-    private String isbn;
+public class Book implements Comparable<Book>{
+    private int isbn;
     private String titulo;
     private String autor;
     ArrayList<String> listaGeneros= new ArrayList<String>();
 
-    public Book(String isbn, String titulo, String autor, ArrayList<String> listaGeneros) {
+    public Book(int isbn, String titulo, String autor, ArrayList<String> listaGeneros) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.listaGeneros = listaGeneros;
     }
 
-    public String getIsbn() {
+    public int getIsbn() {
         return isbn;
     }
 
@@ -44,12 +44,18 @@ public class Book {
      * @param o the object to be compared.
      * @return
      */
+    @Override
+    public int compareTo(Book o) {
+        int tituloDiff = this.titulo.compareToIgnoreCase(o.titulo);
+        int autorDiff = this.autor.compareToIgnoreCase(o.autor);
+        int isbnDiff = this.isbn - o.isbn;
 
-    public int compareTo(Library o) {
-        //FALTA COMPROVAR OTROS EJS
-        return 0;
+        if (tituloDiff != 0) {
+            return tituloDiff;
+        }
+        if (autorDiff != 0) {
+            return autorDiff;
+        }
+        return this.isbn - o.isbn;
     }
-
-
-
 }
