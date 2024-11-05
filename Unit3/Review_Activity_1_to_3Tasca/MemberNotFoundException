@@ -8,6 +8,5 @@ public class MemberNotFoundException extends RuntimeException {
     public String getObj() {
       return nif;
     }
-
     
 }
