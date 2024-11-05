@@ -1,7 +1,16 @@
+import Models.*;
+
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    /**
+     * Main con métodos
+     * @author Natalia Coronado
+     * @version 1.0
+     * @param
+     */
+    public static void main(String[] args) throws IOException {
 
         Library l=testing();
         ordened(l);
@@ -9,8 +18,10 @@ public class Main {
         devuelveBooks(l);
         devuelveSocios(l);
         devuelveSocio(l);
+        fichero(l);
     }
 
+    //Creación de los objetos
     private static Library testing() {
         Library l=new Library("Alejandría","/mi kulo");
 
@@ -54,11 +65,11 @@ public class Main {
         return l;
     }
 
-
+    //Ordenar la lista de libros
     public static void ordened(Library l){
         Collections.sort(l.getListaBooks());
     }
-    
+
     private static void devuelveBook(Library l) {
         System.out.println();
         System.out.println("Un método que dado un ISBN, devuelva el libro asociado: ");
@@ -91,9 +102,84 @@ public class Main {
         System.out.println(o.toString());
     }
 
+    // EDICIÓN DE FICHEROS
+    private static void fichero(Library l) throws IOException {
+
+        File fichero=nameFichero();
+        writeCabeceraFichero(fichero);
+        writeFichero(fichero,l);
+        ArrayList<String> list=readFichero(fichero);
+        printFichero(list);
+    }
+
+    private static File nameFichero() throws IOException {
+        Scanner sc=new Scanner(System.in);
+
+        int num=0;
+
+        System.out.println("Escriba el nombre para el archivo: ");
+        String name=sc.nextLine();
+
+        while (num==0){
+        System.out.println("Escriba un número para el nombre: ");
+            try {
+                num=sc.nextInt();
+            }catch (InputMismatchException ex) {
+                System.out.println("Tiene que ser un número");
+                sc.nextLine();
+            }
+            catch (Exception e){
+                System.out.println("Error");
+            }
+        }
 
 
+        File fichero=new File("C:\\Users\\Natalia Coronado\\Documents\\"+name+num+".csv");
+        if (fichero.createNewFile()) {
+            System.out.println("No se habia creado el fichero, ahora sí");
+        }
+        return fichero;
+    }
 
+    private static void writeCabeceraFichero(File fichero) {
+        try (FileWriter fw = new FileWriter(fichero)){
+            fw.write("ISBN;TITULO;AUTOR;\n");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void writeFichero(File fichero,Library l) {
+        try (FileWriter fw = new FileWriter(fichero,true)){
+            for (Book o: l.getListaBooks()){
+                fw.write(o.getIsbn()+";"+o.getTitulo()+";"+o.getAutor()+";\n");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static ArrayList<String> readFichero(File fichero) throws IOException {
+        ArrayList<String> list=new ArrayList<String>();
+
+        FileReader fr= new FileReader(fichero);
+        BufferedReader br= new BufferedReader(fr);
+        String cad;
+        try{
+            while ((cad=br.readLine())!=null){
+                list.add(cad);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+    private static void printFichero(ArrayList<String> list) {
+        for (String cad: list){
+            System.out.println(cad);
+        }
+    }
 
 
 }
