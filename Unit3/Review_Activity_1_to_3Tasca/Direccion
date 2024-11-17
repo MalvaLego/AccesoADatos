@@ -1,0 +1,65 @@
+public class Direccion implements Comparable<Direccion> {
+    private int codigo;
+    private String street;
+    private int number;
+    private String city;
+    private int codigoPostal;
+
+    public Direccion(int codigo, String street, int number, String city, int codigoPostal) {
+        this.codigo = codigo;
+        this.street = street;
+        this.number = number;
+        this.city = city;
+        this.codigoPostal = codigoPostal;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    @Override
+    public int compareTo(Direccion o) {
+        int streetDiff = this.street.compareToIgnoreCase(o.street);
+        int numberDiff = this.number-o.number;
+        int cpDiff = this.codigoPostal - o.codigoPostal;
+        int codigoDiff = this.codigo - o.codigo;
+
+        if (streetDiff != 0) {
+            return streetDiff;
+        }
+        if (numberDiff != 0) {
+            return numberDiff;
+        }
+        if (cpDiff != 0) {
+            return cpDiff;
+        }
+        return this.codigo - o.codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "Direccion{" +
+                "codigo=" + codigo +
+                ", street='" + street + '\'' +
+                ", number=" + number +
+                ", city='" + city + '\'' +
+                ", codigoPostal=" + codigoPostal +
+                '}';
+    }
+}
