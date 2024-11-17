@@ -1,0 +1,39 @@
+public class Prestamo {
+    private int isbn;
+    private String datePrestamo;
+    private int nif;
+    private String dateDevolucion;
+
+    public Prestamo(int isbn, String datePrestamo, int nif, String dateDevolucion) {
+        this.isbn = isbn;
+        this.datePrestamo = datePrestamo;
+        this.nif = nif;
+        this.dateDevolucion = dateDevolucion;
+    }
+
+    public int getIsbn() {
+        return isbn;
+    }
+
+    public String getDatePrestamo() {
+        return datePrestamo;
+    }
+
+    public int getNif() {
+        return nif;
+    }
+
+    public String getDateDevolucion() {
+        return dateDevolucion;
+    }
+
+    @Override
+    public String toString() {
+        return "Prestamo{" +
+                "isbn=" + isbn +
+                ", datePrestamo='" + datePrestamo + '\'' +
+                ", nif=" + nif +
+                ", dateDevolucion='" + dateDevolucion + '\'' +
+                '}';
+    }
+}
