@@ -1,0 +1,60 @@
+package org.example;
+
+import org.example.Models.ConnectDB;
+
+import java.sql.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        testing();
+    }
+
+    private static void testing() {
+        ConnectDB controllerDB = new ConnectDB();
+        Connection con = controllerDB.connectDB();
+
+        crearTabla(con,controllerDB);
+
+        controllerDB.closeConnection();
+
+    }
+
+    private static void crearTabla(Connection con, ConnectDB controllerDB) {
+
+        String sqlQuery1="create table if not exists students(" +
+                "id_alumno int PRIMARY KEY auto_increment, " +
+                "nombre VARCHAR(30) not null, " +
+                "apellidos VARCHAR(30) not null, " +
+                "fecha_nac DATE not null" +
+                ");";
+
+        String sqlQuery2="create table if not exists asignatura(" +
+                "id_asignatura int PRIMARY KEY auto_increment, " +
+                "nombre VARCHAR(30) not null, " +
+                "FOREIGN KEY profesor_asignatura(id_profesor) REFERENCES profesor(id_profesor))" +
+                ");";
+
+
+        String sqlQuery3="create table if not exists matricula(" +
+                "FOREIGN KEY id_alumno(id_alumno) REFERENCES students(id_alumno)), " +
+                "FOREIGN KEY id_profesor(id_profesor REFERENCES profesor(id_profesor)), " +
+                "fecha VARCHAR(4) not null, " +
+                "nota int not null" +
+                ");";
+
+        String sqlQuery4="create table if not exists profesor(" +
+                "id_professor int PRIMARY KEY auto_increment, " +
+                "nombre VARCHAR(30) not null, " +
+                "apellidos VARCHAR(30) not null, " +
+                "fecha_nac DATE not null" +
+                ");";
+        controllerDB.creacionTabla(sqlQuery1);
+        controllerDB.creacionTabla(sqlQuery2);
+        controllerDB.creacionTabla(sqlQuery3);
+        controllerDB.creacionTabla(sqlQuery4);
+
+        //controllerCity.showCityInfo(controllerCity.getOneHundredCities(con));
+    }
+
+}
