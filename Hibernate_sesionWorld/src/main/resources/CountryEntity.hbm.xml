@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.example.CountryEntity" table="country" schema="world">
+        <id name="code">
+            <column name="Code" sql-type="char(3)" length="3"/>
+        </id>
+        <property name="name">
+            <column name="Name" sql-type="char(52)" length="52"/>
+        </property>
+        <property name="continent">
+            <column name="Continent"
+                    sql-type="enum('asia', 'europe', 'north america', 'africa', 'oceania', 'antarctica', 'south america')"/>
+        </property>
+        <property name="region">
+            <column name="Region" sql-type="char(26)" length="26"/>
+        </property>
+        <property name="surfaceArea">
+            <column name="SurfaceArea" sql-type="decimal(10,2)" precision="10" scale="2"/>
+        </property>
+        <property name="indepYear">
+            <column name="IndepYear" sql-type="smallint" not-null="true"/>
+        </property>
+        <property name="population">
+            <column name="Population" sql-type="int"/>
+        </property>
+        <property name="lifeExpectancy">
+            <column name="LifeExpectancy" sql-type="decimal(3,1)" precision="3" scale="1" not-null="true"/>
+        </property>
+        <property name="gnp">
+            <column name="GNP" sql-type="decimal(10,2)" precision="10" scale="2" not-null="true"/>
+        </property>
+        <property name="gnpOld">
+            <column name="GNPOld" sql-type="decimal(10,2)" precision="10" scale="2" not-null="true"/>
+        </property>
+        <property name="localName">
+            <column name="LocalName" sql-type="char(45)" length="45"/>
+        </property>
+        <property name="governmentForm">
+            <column name="GovernmentForm" sql-type="char(45)" length="45"/>
+        </property>
+        <property name="headOfState">
+            <column name="HeadOfState" sql-type="char(60)" length="60" not-null="true"/>
+        </property>
+        <property name="capital">
+            <column name="Capital" sql-type="int" not-null="true"/>
+        </property>
+        <property name="code2">
+            <column name="Code2" sql-type="char(2)" length="2"/>
+        </property>
+    </class>
+</hibernate-mapping>
